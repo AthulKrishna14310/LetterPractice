@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Practice Letters</string>
+    <string name="subscription_key"> 31f3079bac494b63beb2803676a12617</string>
+    <string name="subscription_apiroot">https://westcentralus.api.cognitive.microsoft.com/vision/v1.0</string>
+
+</resources>
