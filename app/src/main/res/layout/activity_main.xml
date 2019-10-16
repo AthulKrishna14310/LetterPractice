@@ -18,15 +18,15 @@
 
     <Button
 
+        android:id="@+id/hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/hello"
-        android:text="Start Tracing your letter"
         android:layout_alignParentTop="true"
-        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorPrimaryDark"
+        android:text="Start Tracing your letter"
         android:textColor="#FFFF"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="40sp" />
 
     <android.support.v7.widget.CardView
     android:layout_width="wrap_content"
@@ -36,10 +36,11 @@
     android:layout_alignParentTop="true"
     android:layout_margin="20dp"
         >
+
         <Button
             android:id="@+id/refreshButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:background="@color/colorAccent"
             android:foreground="@drawable/ic_refresh_black_24dp" />
 
