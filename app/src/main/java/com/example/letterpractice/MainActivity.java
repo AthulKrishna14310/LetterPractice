@@ -3,6 +3,7 @@ package com.example.letterpractice;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawView drawView;
     private ImageView imageView;
     private Button   finishButton;
-
+    private MediaPlayer ErrorMediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+
+        ErrorMediaPlayer = MediaPlayer.create(this, R.raw.error);
+        if(ErrorMediaPlayer !=null)
+        {
+            ErrorMediaPlayer.setLooping(true);
+        }
+
         drawView=(DrawView)findViewById(R.id.draw_view);
         getSupportActionBar().hide();
         findViewById(R.id.refreshButton).setOnClickListener(new View.OnClickListener() {
@@ -48,17 +56,29 @@ public class MainActivity extends AppCompatActivity {
                 if(event.getAction()==MotionEvent.ACTION_MOVE){
 
                     if(drawView.isOutIndex()){
+
                         findViewById(R.id.hello).setBackgroundColor(Color.RED);
-                        finishButton.setText("TRACED OUT ");
-                    }
+                        if(ErrorMediaPlayer != null)
+                        {
+                            ErrorMediaPlayer.start();
+                        }
+                        finishButton.setText("TRACED OUT");
+
+
+                }
                     else
                         {
                         findViewById(R.id.hello).setBackgroundColor(Color.parseColor("#D81B60"));
                         finishButton.setText("CONTINUE TRACING ");
+                            if(ErrorMediaPlayer != null && ErrorMediaPlayer.isPlaying())
+                            {
+                                ErrorMediaPlayer.pause();
+                            }
                         }
 
                 }
                 else if(event.getAction()==MotionEvent.ACTION_UP){
+                    ErrorMediaPlayer.pause();
                     findViewById(R.id.hello).setBackgroundColor(Color.parseColor("#008577"));
                     finishButton.setText("IF FINISHED CLICK HERE");
                 }
